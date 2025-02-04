@@ -3,9 +3,8 @@ import requests
 import datetime
 from urllib.parse import urlencode
 import json
+from client_keys import *
 
-client_id = "51e9343bcddf4bc7bb159d355d95e3af"
-client_secret = "8aa4b40339674d6f9d253a93db12eea3"
 client_creds = f"{client_id}:{client_secret}"
 encoded_creds = base64.b64encode(client_creds.encode())
 
@@ -44,6 +43,7 @@ def spotify_request(search_request_url):
     }
 
     r = requests.get(search_request_url, headers=search_request_header)
+    print(r.status_code)
     if(r.status_code in range(200,299)):
         return r
 
